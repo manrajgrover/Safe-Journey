@@ -1,1 +1,58 @@
-/* CSS declarations go here */
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: radial-gradient( circle , #4099FF, #1A31FF)
+}
+a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+#logo{
+	width: 40px;
+	width: 8vm;
+	width: 8vmin;
+}
+.jumbotron {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background-color : rgba(255, 255, 255, 0.6);
+}
+#heading{
+	color: #FFFFFF;
+	font-size: 40px;
+	font-size: 8vm;
+	font-size: 8vmin;
+}
+#location{
+	display: none;
+}
+#loggedIn{
+	font-size: 25px;
+	font-size: 3vm;
+	font-size: 3vmin;
+}
+#locationText{
+	font-size: 35px;
+	font-size: 7vm;
+	font-size: 7vmin;
+}
+#tweetit{
+	width: 86%;
+	word-wrap: break-word;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 27px;
+	font-size: 4vm;
+	font-size: 4vmin;
+}
+.vcenter{
+    vertical-align: middle;
+    float: none;
+}
