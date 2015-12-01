@@ -6,19 +6,27 @@
 	<div class="container">
 		<div class="row text-center">
   			<div id="heading"><img id="logo" src="/logo.png" /> Safe Journey</div>
-  		</div>
-  		{{#if currentUser}}
-  		<div>
-  			<div class="row text-center">
-  				<div id="loggedIn">You're logged in <a href="https://twitter.com/{{currentUser.services.twitter.screenName}}" target="_blank">@{{currentUser.services.twitter.screenName}}</a></div>
-  			</div>
-  			<div id="location" class="row text-center jumbotron">
-  				<div id="locationText"></div>
-  				<div id="tweetit"></div>
-  			</div>
-  		</div>
-  		{{else}}
-  			<div class="row text-center">{{ >loginButtons }}</div>
-  		{{/if}}
   	</div>
+  	{{#if currentUser}}
+      {{ >user }}
+  	{{else}}
+  		<div class="row text-center"> 
+        {{ >loginButtons }}
+      </div>
+  	{{/if}}
+  </div>
 </body>
+
+<template name="user">
+  <div>
+    {{#if screenName}}
+      <div class="row text-center">
+        <div id="loggedIn">You're logged in <a href="https://twitter.com/{{ screenName }}" target="_blank">@{{ screenName }}</a></div>
+      </div>
+    {{/if}}
+    <div id="location" class="row text-center jumbotron">
+      <div id="locationText"></div>
+      <div id="tweetit"></div>
+    </div>
+  </div>
+</template>

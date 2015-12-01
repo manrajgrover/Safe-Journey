@@ -28,5 +28,8 @@ Meteor.methods({
       return result;
     });
     return results;
+  },
+  getScreenName: function(){
+    return Meteor.user().services.twitter.screenName;
   }
 });

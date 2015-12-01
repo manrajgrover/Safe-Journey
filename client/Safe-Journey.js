@@ -13,16 +13,30 @@ Meteor.startup(function () {
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     Meteor.call('getLocation',lat,long, function(err, result){
-      if(!err){
+      if(err){
+        $("#tweetit").text("Please allow us to access your location!");
+      }
+      else{
         $("#locationText").text("Your location is:");
         $("#tweetit").text(result[0].data.results[0].formatted_address);
         Session.set("address", result[0].data.results[0].formatted_address);
         $("#location").show();
       }
+    });
+  }
+});
+Template.user.helpers({
+  screenName: function(){
+    Meteor.call('getScreenName',function(err, result){
+      console.log(result)
+      if(err){
+        return false;
+      }
       else{
-        $("#tweetit").text("Please allow us to access your location!");
+        Session.set('screenName', result);
       }
     });
+    return Session.get("screenName");
   }
 });
 Session.setDefault('watching', true);
