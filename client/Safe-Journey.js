@@ -20,6 +20,8 @@ Meteor.startup(function () {
         $("#locationText").text("Your location is:");
         $("#tweetit").text(result[0].data.results[0].formatted_address);
         Session.set("address", result[0].data.results[0].formatted_address);
+        Session.set("setLat", result[0].data.results[0].geometry.location.lat);
+        Session.set("setLong", result[0].data.results[0].geometry.location.lng);
         $("#location").show();
       }
     });
@@ -28,7 +30,6 @@ Meteor.startup(function () {
 Template.user.helpers({
   screenName: function(){
     Meteor.call('getScreenName',function(err, result){
-      console.log(result)
       if(err){
         return false;
       }
@@ -43,7 +44,9 @@ Session.setDefault('watching', true);
 Session.setDefault('shakesCount', 0);
 Session.setDefault('sensitivity', 15);
 onShake = _.debounce(function onShake() {
-  var term = "#Need #help! Current #position at "+Session.get("address");
+  var url = "https://www.google.co.in/maps/@"+Session.get('setLat')+","+Session.get('setLong');
+  var term = "#Need #help! Current #position at "+ url;
+  $("#locationText").hide();
   $("#tweetit").text("Tweeting: "+ term);
   Meteor.call('postTwitter', term, function(err, result){
     if(!err){
@@ -54,4 +57,3 @@ onShake = _.debounce(function onShake() {
     }
   });
 }, 750, true);
-
